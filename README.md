@@ -2,6 +2,8 @@
 
 Made with my mentor at [Bloc](http://bloc.io).
 
+App is hosted on Heroku under the name "ecunningham-bloccit." It can be found at this address: https://git.heroku.com/ecunningham-bloccit.git.
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
