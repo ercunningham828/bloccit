@@ -16,7 +16,17 @@ require 'faker'
      body: Faker::Lorem.paragraph
    )
  end
+
+ # Create Advertisements
+ 20.times do
+   Advertisement.create!(
+    title: Faker::Commerce.product_name,
+    copy: Faker::Lorem.sentence,
+    price: Faker::Commerce.price
+  )
+ end
  
  puts "Seed finished"
  puts "#{Post.count} posts created"
  puts "#{Comment.count} comments created"
+ puts "#{Advertisement.count} ads created"
