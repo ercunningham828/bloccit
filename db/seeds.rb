@@ -48,7 +48,16 @@ require 'faker'
      body: Faker::Lorem.paragraph
    )
  end
- 
+ comments=Comment.all
+ posts_array = posts.to_a
+ #Create Summaries
+ 50.times do
+   Summary.create!(
+     post: posts_array.pop,
+     body:  Faker::Lorem.paragraph
+   )
+ end
+ summaries = Summary.all
 
   # Create an admin user
  admin = User.new(
@@ -80,6 +89,7 @@ require 'faker'
  member.save!
 
 puts "Seed finished"
+puts "#{Summary.count} summaries created"
 puts "#{User.count} users created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
