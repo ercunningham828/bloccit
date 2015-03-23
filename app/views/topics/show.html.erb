@@ -22,7 +22,6 @@
          </div>
        </div>
      <% end %>
-      <%= will_paginate @posts%>
    </div>
    <div class="col-md-4">
      <% if policy(Post.new).create? %>
@@ -30,3 +29,14 @@
      <% end %>
    </div>
  </div>
+
+ <nav>
+  <ul class="pagination">
+      <%(1..@pages).each do |x| %>
+    <li><%= link_to x, topic_path(:page=>x)%></li>
+    <li>
+      </a>
+    </li>
+    <%end%>
+  </ul>
+</nav>

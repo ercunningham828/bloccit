@@ -1,12 +1,18 @@
  class TopicsController < ApplicationController
-   def index
-    @topics=Topic.paginate(page: params[:page], per_page: 10)
+ def index
+    @total=(Topic.count).to_f
+    @pages=(@total/10).ceil
+    @page=(params[:page]).to_i || 1
+    @topics=Topic.limit(10).offset((@page-1)*10)
     authorize @topics
   end
 
   def show
     @topic= Topic.find(params[:id])
-      @posts=@topic.posts.paginate(page: params[:page], per_page: 10)
+      @totalposts=(@topic.posts.count).to_f
+      @pages=(@totalposts/10).ceil
+      @page=(params[:page]).to_i || 1
+      @posts=@topic.posts.limit(10).offset((@page-1)*10)
     authorize @topic
   end
 

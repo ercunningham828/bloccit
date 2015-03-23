@@ -1,12 +1,19 @@
 class PostsController < ApplicationController
-  def index
-    @posts=Post.all
-    authorize @posts
+ def index
+    @total=(Topic.count).to_f
+    @pages=(@total/10).ceil
+    @page=(params[:page]).to_i || 1
+    @topics=Topic.limit(10).offset((@page-1)*10)
+    authorize @topics
   end
 
-   def show
-    @post = Post.find(params[:id])
-     @topic = Topic.find(params[:topic_id])
+  def show
+    @topic= Topic.find(params[:id])
+      @totalposts=(@topic.posts.count).to_f
+      @pages=(@totalposts/10).ceil
+      @page=(params[:page]).to_i || 1
+      @posts=@topic.posts.limit(10).offset((@page-1)*10)
+    authorize @topic
   end
 
   def new
