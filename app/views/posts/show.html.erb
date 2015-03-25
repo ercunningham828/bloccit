@@ -15,3 +15,17 @@
     <% end %>
   </div>
 </div>
+
+<h4 class="media-heading">Comments</h4>
+
+<div class="col-md-8">
+      <%= render @comments %>
+   </div>
+
+<br/>
+
+<h4 class="media-heading">Add New Comment</h4>
+
+<div class="col-md-8">
+   <%= render partial: 'comments/form', locals: { topic: @topic, post: @post, comment: @comment} %>
+</div>
