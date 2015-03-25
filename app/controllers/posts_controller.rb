@@ -50,14 +50,8 @@ def update
        render :edit
      end
    end
-
-  private
-
-def post_params
-  params.require(:post).permit(:title, :body)
-end
-
-def destroy
+   
+  def destroy
      @topic = Topic.find(params[:topic_id])
      @post = Post.find(params[:id])
      title = @post.title
@@ -71,4 +65,10 @@ def destroy
        render :show
      end
    end
+
+  private
+
+def post_params
+  params.require(:post).permit(:title, :body)
+end
 end
