@@ -21,7 +21,7 @@ require 'faker'
  # The `save` method then saves this User to the database.
 
 # Create Topics
- 30.times do
+ 15.times do
    Topic.create!(
      name:         Faker::Lorem.sentence,
      description:  Faker::Lorem.paragraph
@@ -30,26 +30,38 @@ require 'faker'
  topics = Topic.all
 
  # Create Posts
- 300.times do
-   Post.create!(
+ 100.times do
+   post=Post.create!(
      user:   users.sample,
      topic:  topics.sample,
      title:  Faker::Lorem.sentence,
      body:   Faker::Lorem.paragraph
    )
+
+   post.update_attributes!(created_at: rand(10.minutes .. 1.year).ago)
+   post.update_rank
  end
  posts = Post.all
  
  # Create Comments
-500.times do
+200.times do
    Comment.create!(
-     user: users.sample,   # we have not yet associated Users with Comments
+     user: users.sample,   
      post: posts.sample,
      body: Faker::Lorem.paragraph
 
    )
  end
  
+  # Create Votes
+1000.times do
+   Vote.create!(
+     user: users.sample,  
+     post: posts.sample,
+     value: [-1,1].sample
+
+   )
+ end
 
   # Create an admin user
  admin = User.new(
