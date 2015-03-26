@@ -29,4 +29,12 @@ class Post < ActiveRecord::Base
  
     update_attribute(:rank, new_rank)
   end
+
+  after_create :after_create
+
+  def after_create
+    post=self
+    user.create_vote(post)
+  end
+  
 end

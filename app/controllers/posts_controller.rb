@@ -22,6 +22,7 @@ class PostsController < ApplicationController
     @topic = Topic.find(params[:topic_id])
     @post = current_user.posts.build(post_params)
     @post.topic=@topic
+    vote=@post.votes.first
      authorize @post
      if @post.save
        flash[:notice] = "Post was saved."
@@ -30,7 +31,8 @@ class PostsController < ApplicationController
        flash[:error] = "There was an error saving the post. Please try again."
        render :new
      end
-   end
+   
+  end
 
   def edit
     @topic = Topic.find(params[:topic_id])
@@ -68,7 +70,7 @@ def update
 
   private
 
-def post_params
-  params.require(:post).permit(:title, :body)
-end
+  def post_params
+    params.require(:post).permit(:title, :body)
+  end
 end
