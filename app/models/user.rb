@@ -14,10 +14,4 @@ class User < ActiveRecord::Base
   def moderator?
     role=='moderator'
   end
-
-  def create_vote(post)
-    vote=votes.new(value:1)
-    vote.post=post
-    vote.save!
-  end
 end
