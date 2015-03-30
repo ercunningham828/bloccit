@@ -34,6 +34,7 @@
     </small>
 </div>
 
+ <%= render partial: 'favorites/favorite', locals: { post: @post } %>
 
 <h4 class="media-heading">Comments</h4>
 
@@ -44,7 +45,9 @@
 <br/>
 
   <% if policy(@comment).create? %>
-<h4 class="media-heading">Add New Comment</h4>
+
+
+<br/>
 
 <div class="col-md-8">
    <%= render partial: 'comments/form', locals: { topic: @topic, post: @post, comment: @comment} %>
