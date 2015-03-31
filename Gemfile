@@ -63,6 +63,7 @@ gem 'fog'
 gem 'will_paginate', '~> 3.0.5'
 gem 'nokogiri'
 gem 'newrelic_rpm'
+gem 'puma'
 
 group :development do
   gem "better_errors"
@@ -73,3 +74,4 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'capybara'
 end
+
