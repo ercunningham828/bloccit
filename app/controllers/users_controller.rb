@@ -2,6 +2,10 @@
  class UsersController < ApplicationController
    before_action :authenticate_user!, except: [:show]
  
+   def index
+     @users = User.top_rated.paginate(page: params[:page], per_page: 10)
+   end
+
    def update
      if current_user.update_attributes(user_params)
        flash[:notice] = "User information updated"
@@ -23,4 +27,6 @@
    def user_params
      params.require(:user).permit(:name, :avatar, :email_favorites)
    end
+
+    
  end

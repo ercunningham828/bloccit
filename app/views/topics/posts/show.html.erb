@@ -39,7 +39,8 @@
 <h4 class="media-heading">Comments</h4>
 
   <div class="col-md-8">
-      <%= render @comments %>
+    <%= render partial: 'comments/comment', collection: @comments %>
+
    </div>
 
 <br/>
