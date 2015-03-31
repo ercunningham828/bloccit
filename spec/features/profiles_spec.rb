@@ -7,9 +7,7 @@ require 'rails_helper'
    before do
      @user = authenticated_user
      @post = associated_post(user: @user)
-     @comment = Comment.new(user: @user, body: "A Comment", post: @post)
-     allow(@comment).to receive(:send_favorite_emails)
-     @comment.save
+     @comment = comment_without_email(user:@user,post:@post)
    end
  
    describe "not signed in" do
