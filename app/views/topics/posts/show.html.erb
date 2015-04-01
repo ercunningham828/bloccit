@@ -36,21 +36,16 @@
 
  <%= render partial: 'favorites/favorite', locals: { post: @post } %>
 
-<h4 class="media-heading">Comments</h4>
 
-  <div class="col-md-8">
+
+<br/>
+  <% if policy(@comment).create? %>
+<h2>Comments</h2>
+  <div class='js-comments'>
     <%= render partial: 'comments/comment', collection: @comments %>
 
    </div>
-
-<br/>
-
-  <% if policy(@comment).create? %>
-
-
-<br/>
-
-<div class="col-md-8">
+  <div class="new-comment">
    <%= render partial: 'comments/form', locals: { topic: @topic, post: @post, comment: @comment} %>
-   <%end%>
-</div>
+  </div>
+ <%end%>

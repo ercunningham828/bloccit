@@ -6,14 +6,18 @@ class CommentsController < ApplicationController
     @comments=@post.comments
     @comment= current_user.comments.build(comment_params)
     @comment.post=@post
+    @new_comment = Comment.new
     authorize @comment
      if @comment.save
        flash[:notice] = "Comment was saved."
-       redirect_to [@topic,@post]
      else
        flash[:error] = "There was an error saving the comment. Please try again."
-       render 'posts/show'
      end
+
+     respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def destroy
@@ -35,6 +39,6 @@ class CommentsController < ApplicationController
    end
 
   def comment_params
-    params.require(:comment).permit(:body,:post_id)
+    params.require(:comment).permit(:body)
   end
 end
