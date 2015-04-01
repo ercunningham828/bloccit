@@ -9,7 +9,7 @@
       <%= comment.user.name %><br/>
    
       <% if policy(comment).destroy? %>
-        | <%= link_to "Delete", [comment.post, comment], method: :delete %>
+        | <%= link_to "Delete", [comment.post, comment], method: :delete, remote: true %>
       <%end%>
      </small>
   </div>
