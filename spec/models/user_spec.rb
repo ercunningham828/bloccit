@@ -6,7 +6,7 @@
 
     before do
       @post = create(:post)
-      @user = create(:user)
+      @user = build(:user_with_post_and_comments)
     end
      it "returns `nil` if the user has not favorited the post" do
       expect(@user.favorited(@post)).to eq(nil)
@@ -27,11 +27,11 @@
    describe ".top_rated" do
  
      before do
-       @user1 = create(:user)
+       @user1 = build(:user_with_post_and_comments)
        post = create(:post, user: @user1)
        create(:comment, user: @user1, post: post)
  
-       @user2 = create(:user)
+       @user2 = create(:user_with_post_and_comments)
        post = create(:post, user: @user2)
        2.times { create(:comment, user: @user2, post: post) }
      end

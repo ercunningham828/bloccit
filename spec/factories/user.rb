@@ -5,5 +5,12 @@ FactoryGirl.define do
      password "helloworld"
      password_confirmation "helloworld"
      confirmed_at Time.now
-   end
- end
+
+    factory :user_with_post_and_comments do
+      after(:build) do |user|
+        build(:post,user: user)
+        build(:comment,user:user)
+      end
+    end
+  end
+end
